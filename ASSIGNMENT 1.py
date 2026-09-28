@@ -1,3 +1,6 @@
+
+# TASK 1
+
 def check_range(device):
     """
         Description:
@@ -41,6 +44,7 @@ def energy_status(range,energy_consumption):
 
     critical=range[-1]+((range[-1]*50)/100)
     high=range[-1]+((range[-1]*20)/100)
+
     if energy_consumption>=critical:
         return 'Reading is Critical'
     elif energy_consumption>=high:
@@ -49,9 +53,6 @@ def energy_status(range,energy_consumption):
         return 'Reading is Normal'
     else:
         return 'Reading is Low/Invalid'
-
-    
-print(energy_status([0.05,0.50],0))
 
 
 def attention(status):
@@ -64,7 +65,7 @@ def attention(status):
     Returns:
     bool: True if attention is required, otherwise False
     '''
-    if status =="Reading is High" or status== " Reading is Critical" or status=="Reading is Low/Invalid":
+    if status =="Reading is High" or status== "Reading is Critical" or status=="Reading is Low/Invalid":
         return True
     else:
         return False
@@ -72,13 +73,13 @@ def attention(status):
 def energy_cost(energy_consumption, electricity_rate):
     '''
     Description:
-    The function calculates the estimated electricity cost (AED) based on 
-    energy consumption and electricity rate
+        The function calculates the estimated electricity cost (AED) based on 
+        energy consumption and electricity rate
     Parameters:
-    energy_consumption(float): Energy consumed in kWh
-    electricity_rate(float): rate of electricity (cost) in AED per kWh
+        energy_consumption(float): Energy consumed in kWh
+        electricity_rate(float): rate of electricity (cost) in AED per kWh
     Returns:
-    cost(float): Estimated cost of energy consumption in AED
+        cost(float): Estimated cost of energy consumption in AED
     '''
     if energy_consumption <0 or electricity_rate<0:
         print("Invalid entry!")
