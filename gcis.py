@@ -118,11 +118,28 @@ def main():
           ['Refrigerator',0.80],['Refrigerator',2.20],['Washing Machine',1.40],['Washing Machine',4.50],
           ['Air Conditioner',2.80],['Air Conditioner',7.50]]
 
+    num=0
+    total_energy_consumption=0
+    normal=0
+    high=0
+    critical=0
+
     for reading in readings:
+
+        num+=1
+        total_energy_consumption+=reading[1]
         print('DEVICE: ',reading[0])
         print('ENERGY CONSUMPTION: ',reading[1],'kWh')
         x=check_range(reading[0])
         status=energy_status(x,reading[1])
+
+        if status =="Reading is Normal":
+            normal+=1
+        elif status=="Reading is High":
+            high+=1
+        elif status== "Reading is Critical":
+            critical+=1
+        
         print('DEVICE STATUS: ', status)
 
         needs_attention = attention(status)
@@ -137,6 +154,18 @@ def main():
 
         print()
 
+
+    print('Number of Readings: ',num)
+    print('Normal: ',normal)
+    print('High: ',high)
+    print('Critical: ',critical)
+
+    print()
+    print('Readings requiring attention: ',high+critical)
+
+    energy_rate=0.3
+    print('Total Energy: ', total_energy_consumption)
+    print('Estimated Cost: ',total_energy_consumption*energy_rate)
 main()  
 
     
@@ -149,6 +178,4 @@ main()
 
 
 
-readings=[['LED Light',0.06],['LED Light',0.18],['Television',0.32],['Televisison',1.20],
-          ['Refrigerator',0.80],['Refrigerator',2.20],['Washing Machine',1.40],['Washing Machine',4.50],
-          ['Air Conditioner',2.80],['Air Conditioner',7.50]]
+
