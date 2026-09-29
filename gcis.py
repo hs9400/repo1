@@ -28,6 +28,8 @@ def check_range(device):
         return [0.50,5.00]
     else:
         print('Unknown Device!')
+        return "Unknown Device!"
+    
 
 def energy_status(range,energy_consumption):
     """
@@ -116,7 +118,9 @@ def main():
 
     readings=[['LED Light',0.06],['LED Light',0.18],['Television',0.32],['Television',1.20],
           ['Refrigerator',0.80],['Refrigerator',2.20],['Washing Machine',1.40],['Washing Machine',4.50],
-          ['Air Conditioner',2.80],['Air Conditioner',7.50]]
+          ['Air Conditioner',2.80],['Air Conditioner',7.50],["Television",0.05],["LED Light",0.10],
+          ["Air Conditioner",5.05],["Refrigerator",2.00],["LED Light",0.00],["Washing Machine",-0.30],
+          ["Fan",0.20]]
 
     num=0
     total_energy_consumption=0
@@ -125,12 +129,14 @@ def main():
     critical=0
 
     for reading in readings:
-
+        
         num+=1
         total_energy_consumption+=reading[1]
         print('DEVICE: ',reading[0])
         print('ENERGY CONSUMPTION: ',reading[1],'kWh')
         x=check_range(reading[0])
+        if x == "Unknown Device!":
+            continue
         status=energy_status(x,reading[1])
 
         if status =="Reading is Normal":
@@ -166,10 +172,15 @@ def main():
     energy_rate=0.3
     print('Total Energy: ', total_energy_consumption)
     print('Estimated Cost: ',total_energy_consumption*energy_rate)
-main()  
 
-    
-    
+# task 7 - ananya....pls check idk T~T
+
+main()
+print (check_range('fan'))  
+
+
+
+
     
 
     
