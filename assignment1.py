@@ -43,19 +43,4 @@ def analysis():
 #analysis()
 
 def status(device, energy_consumption):
-    if
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    return
