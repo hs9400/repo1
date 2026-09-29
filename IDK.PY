@@ -148,8 +148,14 @@ def main():
         elif status== "Reading is Critical":
             critical+=1
         
+        
         print('DEVICE STATUS: ', status)
-
+        if x == "Unknown Device!":
+            print()
+            continue
+        elif status == "Reading is Low/Invalid":
+            print()
+            continue
         needs_attention = attention(status)
         if needs_attention:
             print('ATTENTION REQUIRED!')
