@@ -30,7 +30,6 @@ def check_range(device):
         print('Unknown Device!')
         return "Unknown Device!"
     
-
 def energy_status(range,energy_consumption):
     """
         Description:
@@ -70,6 +69,8 @@ def attention(status):
         return True
     else:
         return False
+    
+#TASK 2
 
 def energy_cost(energy_consumption, electricity_rate):
     '''
@@ -87,6 +88,8 @@ def energy_cost(energy_consumption, electricity_rate):
 
     cost= energy_consumption*electricity_rate
     return cost
+
+#TASK 3
 
 def feedback(device, status):
     '''
@@ -115,7 +118,7 @@ def feedback(device, status):
         return print("Invalid entry.")
     
 def main():
-
+#TASK 4
     readings=[['LED Light',0.06],['LED Light',0.18],['Television',0.32],['Television',1.20],
           ['Refrigerator',0.80],['Refrigerator',2.20],['Washing Machine',1.40],['Washing Machine',4.50],
           ['Air Conditioner',2.80],["Fan",0.20],['Air Conditioner',7.50],["Television",0.05],["LED Light",0.10],
@@ -168,7 +171,7 @@ def main():
 
         print()
 
-
+#TASK 5 & 6
     print('Number of Readings: ',num)
     print('Normal: ',normal)
     print('High: ',high)
@@ -181,10 +184,18 @@ def main():
     print('Total Energy: ', total_energy_consumption)
     print('Estimated Cost: ',total_energy_consumption*energy_rate)
 
-# task 7 - ananya....pls check idk T~T
+    highest_consumption=0.00
+    highest_consumption_device=''
+    for reading in readings:
+        if reading[1]>highest_consumption:
+            highest_consumption_device=reading[0]
+            highest_consumption=reading[1]
+    print('Highest consumption: ')
+    print(highest_consumption_device,'-',highest_consumption )
 
 main()
-print (check_range('fan'))  
+# task 7 - ananya....pls check idk T~T
+
 
 
 
