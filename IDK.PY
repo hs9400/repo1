@@ -48,7 +48,7 @@ def energy_status(range,energy_consumption):
 
     if energy_consumption>=critical:
         return 'Reading is Critical'
-    elif energy_consumption>=high:
+    elif energy_consumption>range[-1] and energy_consumption<=critical:
         return 'Reading is High'
     elif energy_consumption>=range[0] and energy_consumption<=range[1]:
         return 'Reading is Normal'
@@ -58,12 +58,12 @@ def energy_status(range,energy_consumption):
 def attention(status):
     '''
     Description:
-    The function evaluates whether a device requires attention based on its
-    status.
+        The function evaluates whether a device requires attention based on its
+        status.
     Parameters:
-    status (str): 'Normal, 'High', or 'Critical'
+        status (str) - 'Normal, 'High', or 'Critical'
     Returns:
-    bool: True if attention is required, otherwise False
+        bool - True if attention is required, otherwise False
     '''
     if status =="Reading is High" or status== "Reading is Critical" or status=="Reading is Low/Invalid":
         return True
@@ -94,31 +94,32 @@ def energy_cost(energy_consumption, electricity_rate):
 def feedback(device, status):
     '''
     Description:
-    The function analyzes and provides feedback on Homesystem devices based on type of device and status.
+        The function analyzes and provides feedback on Homesystem devices based on type of device and status.
     Parameters:
-    device(str): Type of Device
-    status(str): status of device (High/Normal/Critical)
+        device(str) - Type of Device
+        status(str) - status of device (High/Normal/Critical)
     Returns:
-    feedback as string
+        feedback as string
     '''    
     if status=="Reading is Normal":
         return "Device is operating efficiently. No action needed."
     elif status=="Reading is High":
         if device=="Refrigerator":
-            return print("Check for damage and temperature controls.")
+            return "Check for damage and temperature controls."
         elif device=="Air Conditioner":
-            return print("Check for damage and operating duration.")
+            return "Check for damage and operating duration."
         elif device == "Washing Machine":
-            return print("Check controls and operating efficiency.")
+            return "Check controls and operating efficiency."
         else:
-            return print('Energy consumption is high check device.')
+            return 'Energy consumption is high check device.'
     elif status=="Reading is Critical":
-        return print("URGENT ATTENTION NEEDED! Extreme power spike detected. Disconnect Immediately!")
+        return "URGENT ATTENTION NEEDED! Extreme power spike detected. Disconnect Immediately!"
     else:
-        return print("Invalid entry.")
-    
-def main():
-#TASK 4
+        return "Invalid entry."
+
+#TASK 4 
+   
+def report():
     readings=[['LED Light',0.06],['LED Light',0.18],['Television',0.32],['Television',1.20],
           ['Refrigerator',0.80],['Refrigerator',2.20],['Washing Machine',1.40],['Washing Machine',4.50],
           ['Air Conditioner',2.80],["Fan",0.20],['Air Conditioner',7.50],["Television",0.05],
@@ -137,12 +138,14 @@ def main():
         total_energy_consumption+=reading[1]
         print('DEVICE: ',reading[0])
         print('ENERGY CONSUMPTION: ',reading[1],'kWh')
-        x=check_range(reading[0])
+
+        energy_range=check_range(reading[0])
         
-        if x == "Unknown Device!":
+        if energy_range == "Unknown Device!":
             print()
             continue
-        status=energy_status(x,reading[1])
+
+        status=energy_status(energy_range,reading[1])
 
         if status =="Reading is Normal":
             normal+=1
@@ -150,28 +153,26 @@ def main():
             high+=1
         elif status== "Reading is Critical":
             critical+=1
-        
-        
-        print('DEVICE STATUS: ', status)
-        if x == "Unknown Device!":
-            print()
-            continue
-        elif status == "Reading is Low/Invalid":
-            print()
-            continue
+
         needs_attention = attention(status)
         if needs_attention:
             print('ATTENTION REQUIRED!')
         else:
             print('Device is functioning normally. Attention not required.')
+        
+        print('DEVICE STATUS: ', status)
+        if status == "Reading is Low/Invalid":
+            print()
+            continue
 
-        er=0.3
-        print('ENERGY COST: ',energy_cost(reading[1],er),'AED/kWh')
+        energy_rate=0.3
+        print('ENERGY COST: ',energy_cost(reading[1],energy_rate),'AED/kWh')
         print('FEEDBACK: ',feedback(reading[0],status))
 
         print()
 
 #TASK 5 & 6
+    print('~~~REPORT~~~')
     print('Number of Readings: ',num)
     print('Normal: ',normal)
     print('High: ',high)
@@ -183,6 +184,7 @@ def main():
     energy_rate=0.3
     print('Total Energy: ', total_energy_consumption)
     print('Estimated Cost: ',total_energy_consumption*energy_rate)
+    print()
 
     highest_consumption=0.00
     highest_consumption_device=''
@@ -193,8 +195,9 @@ def main():
     print('Highest consumption: ')
     print(highest_consumption_device,'-',highest_consumption )
 
+def main():
+    report()
 main()
-# task 7 - ananya....pls check idk T~T
 
 
 
