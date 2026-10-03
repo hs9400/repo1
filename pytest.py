@@ -5,7 +5,7 @@ def test_energy_status():
     actual=gcis.energy_status([0.01,0.10],0.06)
     assert expected==actual
 
-def test_energy_status_boundry():
+def test_energy_status_boundary():
     expected='Reading is Normal'
     actual=gcis.energy_status([0.01,0.10],0.10)
     assert expected==actual
@@ -47,7 +47,7 @@ def test_unknown_device():
 
 
 test_energy_status()
-test_energy_status_boundry()
+test_energy_status_boundary()
 test_energy_status_high()
 test_energy_status_critical()
 test_energy_status_invalid()
