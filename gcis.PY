@@ -11,6 +11,7 @@ def check_range(device):
         Returns:
             Normal operating range of provided device.
     """
+    #checking for device type, printing and returning energy range.
     if device == 'LED Light':
         print('normal range is 0.01 - 0.10 kWh')
         return [0.01,0.10]
@@ -42,10 +43,11 @@ def energy_status(range,energy_consumption):
         Returns:
             string, if the energy consumption of the device is within normal, high or critical range.  
     """
-
+    #Formula used to evaluate critical/high ranges.
     critical=range[-1]+((range[-1]*50)/100)
     high=range[-1]+((range[-1]*20)/100)
-
+    
+    #Checks energy consumption and returns status
     if energy_consumption>=critical:
         return 'Reading is Critical'
     elif energy_consumption>range[-1] and energy_consumption<=critical:
@@ -65,6 +67,7 @@ def attention(status):
     Returns:
         bool - True if attention is required, otherwise False
     '''
+    #Checks whether device status is High/Critical/Low or Invalid and returns appropriate response.
     if status =="Reading is High" or status== "Reading is Critical" or status=="Reading is Low/Invalid":
         return True
     else:
@@ -83,9 +86,11 @@ def energy_cost(energy_consumption, electricity_rate):
     Returns:
         cost(float): Estimated cost of energy consumption in AED
     '''
+    #for invalid entries:
     if energy_consumption <0 or electricity_rate<0:
         print("Invalid entry!")
-
+    
+    #Formula to calculate and return cost
     cost= energy_consumption*electricity_rate
     return cost
 
@@ -101,6 +106,7 @@ def feedback(device, status):
     Returns:
         feedback as string
     '''    
+    #Checks device operating efficiency and returns suitable actions to complete.
     if status=="Reading is Normal":
         return "Device is operating efficiently. No action needed."
     elif status=="Reading is High":
@@ -118,8 +124,16 @@ def feedback(device, status):
         return "Invalid entry."
 
 #TASK 4 
-   
 def report():
+    '''
+    Description:
+        The function provides and displayes an energy consumption report for a list of predefined devices.
+    Parameters:
+        None
+    Returns:
+        None (prints energy report directly).
+    '''
+    #predefined list of devices and energy usage (kWh).
     readings=[['LED Light',0.06],['LED Light',0.18],['Television',0.32],['Television',1.20],
           ['Refrigerator',0.80],['Refrigerator',2.20],['Washing Machine',1.40],['Washing Machine',4.50],
           ['Air Conditioner',2.80],["Fan",0.20],['Air Conditioner',7.50],["Television",0.05],
@@ -132,7 +146,13 @@ def report():
     high=0
     critical=0
 
-    for reading in readings:
+    #Iterates over list and:
+        #- Finds the energy consumption range for the device.
+        #- Classifies the reading as Normal, High, Critical, or Low/Invalid.
+        #- Checks for any required attention.
+        #- Calculates the energy cost.
+        #- Provides feedback based on the device's status.
+        for reading in readings:
         
         num+=1
         total_energy_consumption+=reading[1]
@@ -140,7 +160,7 @@ def report():
         print('ENERGY CONSUMPTION: ',reading[1],'kWh')
 
         energy_range=check_range(reading[0])
-        
+
         if energy_range == "Unknown Device!":
             print()
             continue
@@ -172,6 +192,16 @@ def report():
         print()
 
 #TASK 5 & 6
+''' Displays overall report summary:
+ - Total number of readings
+ - Number of high, normal and critical readings
+ - Number of readings requiring attention
+ - Total energy consumption
+ - Estimated energy cost
+ - Device with the highest usage of energy
+'''
+
+
     print('~~~REPORT~~~')
     print('Number of Readings: ',num)
     print('Normal: ',normal)
@@ -196,6 +226,7 @@ def report():
     print(highest_consumption_device,'-',highest_consumption )
 
 def main():
+#main function: calls and generates energy consumption report.
     report()
 main()
 
