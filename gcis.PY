@@ -27,6 +27,7 @@ def check_range(device):
         print('normal range is 0.50 - 5.00 kWh')
         return [0.50,5.00]
     else:
+        print('Unknown Device!')
         return "Unknown Device!"
     
 def energy_status(range,energy_consumption):
@@ -196,7 +197,7 @@ def report():
 
 def main():
     report()
-
+main()
 
 
 
