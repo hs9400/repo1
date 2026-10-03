@@ -1,0 +1,4 @@
+In our HomeSense program, We have classified the readings as High or Critical as follows, 
+
+If the device's energy consumption is within the normal range, then the devices are in normal condition.
+Our team has decided that if a device's energy consumption is up to 50% higher than the maximum value in the normal range for the respective device, then the reading is determined to be “High”. And if the device's energy consumption is 50% higher than the maximum value in the normal range, the reading is “Critical”.
