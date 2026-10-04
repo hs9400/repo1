@@ -146,12 +146,12 @@ def report():
     critical=0
 
     #Iterates over list and:
-        #- Finds the energy consumption range for the device.
-        #- Classifies the reading as Normal, High, Critical, or Low/Invalid.
-        #- Checks for any required attention.
-        #- Calculates the energy cost.
-        #- Provides feedback based on the device's status.
-        for reading in readings:
+    #- Finds the energy consumption range for the device.
+    #- Classifies the reading as Normal, High, Critical, or Low/Invalid.
+    #- Checks for any required attention.
+    #- Calculates the energy cost.
+    #- Provides feedback based on the device's status.
+    for reading in readings:
         
         num+=1
         total_energy_consumption+=reading[1]
@@ -191,14 +191,14 @@ def report():
         print()
 
 #TASK 5 & 6
-''' Displays overall report summary:
- - Total number of readings
- - Number of high, normal and critical readings
- - Number of readings requiring attention
- - Total energy consumption
- - Estimated energy cost
- - Device with the highest usage of energy
-'''
+    ''' Displays overall report summary:
+    - Total number of readings
+    - Number of high, normal and critical readings
+    - Number of readings requiring attention
+    - Total energy consumption
+    - Estimated energy cost
+    - Device with the highest usage of energy
+    '''
 
 
     print('~~~REPORT~~~')
